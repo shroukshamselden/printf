@@ -34,19 +34,20 @@ char buffer[], int flags, int width, int precision, int size)
 		if (fmt[*ind] == '\0')
 			return (-1);
 		unknow_len += write(1, "%%", 1);
-		if (fmt[*ind - 1] == '')
-			unknoe_len += write(1, "", 1);
+		if (fmt[*ind - 1] == ' ')
+			unknow_len += write(1, "", 1);
 		else if (width)
 		{
 			--(*ind);
 			while (fmt[*ind] != ' ' && fmt[*ind] != '%')
 				--(*ind);
-			if (fmt[*ind] == '')
+			if (fmt[*ind] == ' ')
 				--(*ind);
 			return (1);
 		}
 		unknow_len += write(1, &fmt[*ind], 1);
 		return (unknow_len);
 	}
-	return (printed_chars);
+	return (print_chars);
+	return (0);
 }
